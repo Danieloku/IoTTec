@@ -5,7 +5,7 @@ import CarritoForm from "./components/CarritoForms";
 function App() {
   return (
     <div>
-      <h1>Aplicación del carrito en cloud</h1>
+      <h1>Aplicación del carrito en cloud, equipo Kawasaki</h1>
       <CarritoList/>
       <CarritoForm/>
     </div>
