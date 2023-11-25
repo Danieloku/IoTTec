@@ -14,17 +14,18 @@ const CarritoList = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Lista de Elementos del Carrito</h1>
-      <ul>
+    <div className="container">
+      <h1 className="title">Lista de Elementos del Carrito</h1>
+      <ul className="list">
         {items.map((item, index) => (
-          <li key={index}>
-            Temperatura: {item.temperatura}, Distancia: {item.distancia}, Timestamp: {item.timestamp}
+          <li className="item" key={index}>
+            <span className="item-details">Temperatura: {item.temperatura}, Distancia: {item.distancia}, Timestamp: {item.timestamp}</span>
           </li>
         ))}
       </ul>
     </div>
   );
 };
+
 
 export default CarritoList;
