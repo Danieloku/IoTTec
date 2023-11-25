@@ -14,7 +14,8 @@ function App() {
 
   return (
     <div>
-      <h1 style={headerStyle}>Aplicación del carrito en cloud, equipo Kawasaki</h1>      <CarritoList/>
+      <h1 style={headerStyle}>Aplicación del carrito en cloud, equipo Kawasaki</h1>     
+      <CarritoList/>
       <CarritoForm/>
     </div>
   );
