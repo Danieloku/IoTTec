@@ -9,8 +9,11 @@ const CarritoList = () => {
     fetch('https://t7pqhkxfhd.execute-api.us-east-1.amazonaws.com/etapaConexionAPIcarrito/lamda_handler_kawasaki', {
       method: 'GET',
     })
-      .then((response) => response.json())
-      .then((data) => setItems(data))
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('API Response:', data); // Log the data here
+      setItems(data);
+    })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
