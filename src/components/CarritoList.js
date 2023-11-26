@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Bar } from '@nivo/bar';
 import './CarritoList.css'; 
 
 const CarritoList = () => {
