@@ -1,38 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import './CarritoList.css'; 
+import React, { useState, useEffect } from "react";
+import DataTable from "./DataTable";
+import { Typography } from "@mui/material";
 
 const CarritoList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     // Realiza la solicitud GET a tu función Lambda
-    fetch('https://t7pqhkxfhd.execute-api.us-east-1.amazonaws.com/etapaConexionAPIcarrito/lamda_handler_kawasaki', {
-      method: 'GET',
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('API Response:', data); // Log the data here
-      setItems(data);
-    })
-      .catch((error) => console.error('Error fetching data:', error));
+    fetchData();
+
+    const interval = setInterval(fetchData, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "https://sx2rnj3fjh.execute-api.us-east-1.amazonaws.com/atapaConexionAPIcarrito/lambda_handler",
+        {
+          method: "GET",
+        }
+      );
+      const data = await response.json();
+      setItems(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-
-  
   return (
-    <div className="container">
-      <h1 className="title">Lista de Elementos del Carrito</h1>
-      <ul className="list">
-        {items.map((item, index) => (
-          <li className="item" key={index}>
-            <span className="item-details">Temperatura: {item.temperatura}, Distancia: {item.distancia}, Timestamp: {item.timestamp}</span>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <Typography variant="h4" style={{ margin: 8 }}>
+        Lista de elementos del carrito
+      </Typography>
+      <DataTable dataRows={items} />
     </div>
   );
 };
-
 
 export default CarritoList;
